@@ -1,0 +1,78 @@
+<DOCTYPE! html>
+<html>
+	<head>
+		<title>Contact Card</title>
+		<meta charset="utf-8">
+		<meta name="description" content="This is a dynamically generated page">
+		<style type="text/css">
+			#container{
+				width: 970px;
+				position: absolute;
+				padding: 20px;
+			}
+			.content{
+				padding-top: 30px;
+				text-align: center;
+				position: relative;
+				width: 390px;
+				height: 210px;
+				background-color: lightblue;
+				top: -370px;
+				left: 880px;
+			}
+			label{
+				position: relative;
+				margin-bottom: 30px;
+				top: 25px;
+				display: block;
+				font-size: 30px;
+			}
+			textarea{
+				resize: none;
+				width: 280px;
+				height: 110px;
+			}
+			#submit{
+				margin-top: 20px;
+				display: block;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+		$(function(){
+			$('#submit').on('click', function(){
+				var name = $('input[name=first_name]').val();
+				var lastname = $('input[name=last_name]').val();
+				var description = $('textarea[name=desc]').val();
+				$('#content1').append("<div class='newcard'><h1>" + name + "</h1>" + "<h2>" + lastname + "</h2> <p id='pcontent' style=\display:none\>" + description +  "</p></div>");
+//				making it look pretty
+				$('.newcard').addClass('content')
+				$('.newcard').hide()
+				$('.newcard').fadeIn('slow')
+				
+				return false;
+			});
+			$(document).on('click', '.newcard', function(){
+				$(this).children().toggle();
+			})
+			
+		});
+		</script>
+	</head>
+	<body>
+	<div id="container">
+		<form>
+			<label>First Name: </label>
+			<input type="text" name="first_name" placeholder="First Name">
+			<label>Last Name: </label>
+			<input type="text" name="last_name" placeholder="Last Name">
+			<label>Description: </label><br>
+			<textarea name="desc" placeholder="Enter description"></textarea>
+			<input type="submit" id="submit" value="Add User">
+		</form>
+		<div id="content1">			
+			
+		</div>
+	</div>
+	</body>
+</html>
